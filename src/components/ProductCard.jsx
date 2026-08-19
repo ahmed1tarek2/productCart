@@ -1,22 +1,18 @@
 import { Button, Card, Image, Text, VStack } from "@chakra-ui/react";
 import React from "react";
-import { products } from "../api";
 import { useStore } from "../store";
 
-
-
 function ProductCard({ product }) {
-  const {addToCart}=useStore()
+  const { addToCart } = useStore();
   return (
-    <Card.Root maxW="100% " overflow="hidden" border="none">
+    <Card.Root maxW="100%" overflow="hidden" border="none">
       <Card.Body gap="2" position="relative" p="0">
         <Image
           src={product.image.desktop.replace("./", "/")}
-          h="250px"
           alt="test"
           borderRadius="lg"
-          w="100%"
-          h="300px"
+          width="100%"
+          height="300px"
           objectFit="cover"
         />
         <Button
@@ -26,7 +22,7 @@ function ProductCard({ product }) {
           bottom="-5"
           left="50%"
           transform="translateX(-50%)"
-          onClick={addToCart(product.name)}
+          onClick={() => addToCart(product.name)}
         >
           Add to cart
         </Button>

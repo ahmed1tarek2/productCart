@@ -3,7 +3,7 @@ import React from "react";
 import { useStore } from "../../store";
 
 function CartOrders() {
-  const { addToCart, removeFromCart, decreaseQuantity } = useStore();
+  // const { addToCart, removeFromCart, decreaseQuantity } = useStore();
   return (
     <HStack
       justifyContent="space-between"
