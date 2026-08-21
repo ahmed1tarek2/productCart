@@ -1,9 +1,20 @@
 import { Box, HStack, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { useStore } from "../../store";
+import { products } from "../../api";
 
-function CartOrders() {
-  // const { addToCart, removeFromCart, decreaseQuantity } = useStore();
+function CartOrders({ cartProduct }) {
+  const { removeFromCart } = useStore();
+
+  const product = products.find(
+    (item) => item?.name?.toLowerCase() === cartProduct?.name?.toLowerCase(),
+  );
+
+  if (!product) {
+    return null;
+  }
+  const totalCardPrice = product.price * cartProduct.quantity;
+
   return (
     <HStack
       justifyContent="space-between"
@@ -15,13 +26,15 @@ function CartOrders() {
       spacing={4}
     >
       <Box>
-        <Text>Product Name</Text>
+        <Text>{product.name}</Text>
+
         <HStack>
-          <Text>1x</Text>
-          <Text>@ $10.00</Text>
-          <Text>$10.00</Text>
+          <Text>{cartProduct.quantity}x</Text>
+          <Text>@ ${product.price}</Text>
+          <Text>${totalCardPrice}</Text>
         </HStack>
       </Box>
+
       <Box
         ml="auto"
         cursor="pointer"
@@ -29,6 +42,7 @@ function CartOrders() {
         border="2px solid #000"
         _hover={{ bg: "gray.200" }}
         p={1}
+        onClick={()=>removeFromCart(cartProduct.name)}
       >
         <Image src="/assets/images/icon-remove-item.svg" alt="Remove item" />
       </Box>

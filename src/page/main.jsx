@@ -11,12 +11,12 @@ function Main() {
       <Box>
         <HStack justify="center" align="center" wrap="wrap" gap="4">
           {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.name} product={product} />
           ))}
         </HStack>
       </Box>
       <Box w="60%" borderRadius="lg" p="5" bg="gray.100" boxShadow="md">
-        <Text>your cart (0)</Text>
+        
         <CartDetailsFull />
         {/* <CartDetails /> */}
       </Box>
