@@ -1,4 +1,4 @@
-import { Box, HStack, Text, VStack } from "@chakra-ui/react";
+import { Box, Grid, HStack, Text } from "@chakra-ui/react";
 import React from "react";
 import ProductCard from "../components/ProductCard";
 import { products } from "../api";
@@ -7,16 +7,42 @@ import CartDetailsFull from "../components/Cart/CartDetailsFull";
 
 function Main() {
   return (
-    <HStack justify="center" align="start" w="100%" h="100%" px="8" py="8">
-      <Box>
-        <HStack justify="center" align="center" wrap="wrap" gap="4">
+    <HStack
+      justify="center"
+      align="start"
+      w="100%"
+      minH="100%"
+      bg="#fdfaf7"
+      px={{ base: "5", md: "10" }}
+      py={{ base: "6", md: "10" }}
+      gap="10"
+    >
+      <Box flex="1" maxW="900px">
+        <Text fontSize="28px" fontWeight="bold" mb="6">
+          Desserts
+        </Text>
+
+        <Grid
+          templateColumns={{
+            base: "repeat(1, 1fr)",
+            sm: "repeat(2, 1fr)",
+            lg: "repeat(3, 1fr)",
+          }}
+          gap="6"
+        >
           {products.map((product) => (
             <ProductCard key={product.name} product={product} />
           ))}
-        </HStack>
+        </Grid>
       </Box>
-      <Box w="60%" borderRadius="lg" p="5" bg="gray.100" boxShadow="md">
-        
+
+      <Box
+        w="380px"
+        flexShrink="0"
+        borderRadius="16px"
+        position="sticky"
+        top="10"
+      >
         <CartDetailsFull />
         {/* <CartDetails /> */}
       </Box>

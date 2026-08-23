@@ -6,7 +6,7 @@ const normalizeCartName = (name) => String(name).toLowerCase().trim();
 export const useStore = create(
   persist((set) => ({
     cart: [],
-    
+    clearCart: () => set({ cart: [] }),
     addToCart: (name) =>
       set((state) => {
         const normalizedName = normalizeCartName(name);
